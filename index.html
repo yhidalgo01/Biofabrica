@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#487a3b" />
+  <title>DigiPROY | Evaluaciones</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header" aria-label="DigiPROY Camposol">
+      <img src="assets/cabecera.png" alt="DigiPROY Camposol" />
+    </header>
+
+    <main id="homeView" class="home-view">
+      <section class="search-area" aria-label="Buscar y filtrar evaluaciones">
+        <label class="search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"/><path d="m15.8 15.8 5 5"/></svg>
+          <input id="searchInput" type="search" placeholder="Buscar evaluación" autocomplete="off" />
+          <button id="clearSearch" class="clear-button" aria-label="Limpiar búsqueda" type="button">×</button>
+        </label>
+        <button id="filterBtn" class="filter-btn" aria-label="Filtrar cartillas" title="Filtrar cartillas" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6.3 7.2v6.5l-3.4 1v-7.5z"/></svg>
+        </button>
+      </section>
+      <div id="filtersPanel" class="filters-panel hidden">
+        <span>Mostrar cartillas</span>
+        <div class="filter-options">
+          <button type="button" class="filter-choice active" data-filter="all">Todas</button>
+          <button type="button" class="filter-choice" data-filter="Blueberries">Arándanos</button>
+          <button type="button" class="filter-choice" data-filter="EU">EU</button>
+          <button type="button" class="filter-choice" data-filter="PE">Perú</button>
+        </div>
+      </div>
+      <section class="cards-grid" id="cardsGrid" aria-label="Cartillas de evaluación"></section>
+      <p class="empty-message hidden" id="emptyMessage">No se encontraron cartillas con ese criterio.</p>
+    </main>
+
+    <main id="formView" class="form-view hidden">
+      <div class="form-heading">
+        <button type="button" id="backBtn" class="back-btn" aria-label="Volver a cartillas">‹</button>
+        <div><span class="eyebrow">Registro de evaluación</span><h1 id="formTitle">E154</h1><p id="formSubtitle"></p></div>
+      </div>
+      <form id="evaluationForm">
+        <div class="form-section-title">Datos generales</div>
+        <div class="form-grid">
+          <label>Fecha <span>*</span><input type="date" name="fecha" required /></label>
+          <label>Código de evaluación<input id="formCode" name="codigo" readonly /></label>
+          <label>Responsable <span>*</span><input type="text" name="responsable" required placeholder="Ingresar responsable" /></label>
+          <label>Lote / Parcela <span>*</span><input type="text" name="lote" required placeholder="Ingresar lote" /></label>
+          <label>Producto <span>*</span><select name="producto" required><option value="">Seleccionar</option><option>Arándano</option><option>Uva</option><option>Palta</option></select></label>
+          <label>Estado de evaluación <span>*</span><select name="estado" required><option value="">Seleccionar</option><option>Conforme</option><option>Con observaciones</option><option>No conforme</option></select></label>
+        </div>
+        <div class="form-section-title">Detalle de la evaluación</div>
+        <label class="full-field">Observaciones<textarea name="observaciones" rows="4" placeholder="Registrar hallazgos y observaciones..."></textarea></label>
+        <div class="form-actions"><button type="button" id="cancelBtn" class="secondary-btn">Cancelar</button><button type="submit" class="save-btn">Guardar →</button></div>
+        <p class="form-notice" id="formNotice" role="status"></p>
+      </form>
+    </main>
+
+    <button id="quickCreate" type="button" class="fab" aria-label="Registrar nueva evaluación" title="Registrar nueva evaluación">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 16-1 4 4-1L19 8l-3-3z"/><path d="m14.7 6.3 3 3"/></svg>
+    </button>
+    <nav class="bottom-nav" aria-label="Navegación inferior">
+      <button class="nav-item active" id="navHome" type="button"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-7H9v7H3z"/></svg><span>Inicio</span></button>
+      <button class="nav-item" type="button" data-nav="archive" title="Archivo"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1"/><path d="M5 10v10h14V10M10 14h4"/></svg></button>
+      <button class="nav-item" type="button" data-nav="assess" title="Evaluaciones"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></button>
+      <button class="nav-item" type="button" data-nav="done" title="Completados"><svg viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></svg></button>
+      <button class="nav-item" type="button" data-nav="cloud" title="Sincronización"><svg viewBox="0 0 24 24"><path d="M7 18h11a4 4 0 0 0 .1-8A6 6 0 0 0 6.4 9 4.5 4.5 0 0 0 7 18z"/><path d="M12 10v10m-3-3 3 3 3-3"/></svg></button>
+      <button class="nav-item" type="button" data-nav="profile" title="Perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-5 3.3-8 8-8s8 3 8 8"/></svg></button>
+    </nav>
+    <div class="toast hidden" id="toast" role="status"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
